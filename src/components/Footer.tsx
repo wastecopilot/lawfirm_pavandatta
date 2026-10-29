@@ -36,10 +36,10 @@ export default function Footer() {
 
           <nav aria-label="Quick links">
             <h2 className="font-sans text-sm font-semibold tracking-[0.18em] text-white uppercase">Quick links</h2>
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-4 pointer-fine:mt-5 pointer-fine:space-y-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-white/80 transition hover:text-gold">
+                  <a href={link.href} className="inline-flex min-h-11 items-center text-white/80 transition hover:text-gold pointer-fine:min-h-0">
                     {link.label}
                   </a>
                 </li>
@@ -49,10 +49,10 @@ export default function Footer() {
 
           <nav aria-label="Practice areas">
             <h2 className="font-sans text-sm font-semibold tracking-[0.18em] text-white uppercase">Practice</h2>
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-4 pointer-fine:mt-5 pointer-fine:space-y-3">
               {footerPractice.map((area) => (
                 <li key={area.slug}>
-                  <a href="#practice-areas" className="text-white/80 transition hover:text-gold">
+                  <a href="#practice-areas" className="inline-flex min-h-11 items-center text-white/80 transition hover:text-gold pointer-fine:min-h-0">
                     {area.title}
                   </a>
                 </li>
@@ -78,7 +78,7 @@ export default function Footer() {
 
         <p
           aria-hidden
-          className="pointer-events-none mt-16 text-center font-serif text-[clamp(3.2rem,13vw,11rem)] leading-none font-bold tracking-tight whitespace-nowrap text-white/[0.09] select-none"
+          className="pointer-events-none mt-16 text-center font-serif text-[clamp(2.25rem,11.5vw,11rem)] leading-none font-bold tracking-tight whitespace-nowrap text-white/[0.09] select-none"
         >
           PAVAN DATTA
         </p>

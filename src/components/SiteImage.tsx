@@ -24,6 +24,10 @@ const RATIOS: Record<ImageSlot, string> = {
 
 const EXTENSIONS = [".png", ".jpg", ".jpeg", ".webp"];
 
+/** Soft blue tint shown while a lazy image loads. */
+const LOADING_TINT =
+  "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect width='1' height='1' fill='%23EEF2FB'/%3E%3C/svg%3E";
+
 /**
  * Returns the public URL for an image slot, or null when no file exists.
  * A version query based on the file's modified time keeps the optimised
@@ -76,6 +80,7 @@ export default function SiteImage({
           fill
           sizes={sizes}
           preload={preload}
+          placeholder={preload ? "empty" : LOADING_TINT}
           className={`${imageClassName.includes("object-contain") ? "" : "object-cover"} ${imageClassName}`}
         />
       </div>

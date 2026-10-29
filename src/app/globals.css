@@ -20,8 +20,24 @@
   --navy: #0f1b4d;
   --body: #46506e;
 
-  --header-h: 84px;
+  --header-h: 72px;
 }
+
+/* Taller header from small tablets up; a slimmer one on phones held sideways. */
+@media (min-width: 640px) {
+  :root {
+    --header-h: 84px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  :root {
+    --header-h: 64px;
+  }
+}
+
+/* Phones in landscape have little height, so sections tighten up. */
+@custom-variant short (@media (max-height: 500px) and (orientation: landscape));
 
 @theme inline {
   --color-bg: var(--bg);
@@ -121,15 +137,15 @@
 }
 
 @utility section {
-  @apply py-20 sm:py-24 lg:py-28;
+  @apply py-16 sm:py-24 lg:py-28 short:py-14;
 }
 
 @utility eyebrow {
-  @apply inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-1.5 text-xs font-semibold tracking-[0.18em] text-cobalt uppercase ring-1 ring-cobalt/15 backdrop-blur;
+  @apply inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-1.5 text-xs font-semibold tracking-[0.14em] text-cobalt uppercase ring-1 sm:tracking-[0.18em] ring-cobalt/15 backdrop-blur;
 }
 
 @utility heading-xl {
-  @apply font-serif text-[2.6rem] leading-[1.05] font-bold tracking-tight sm:text-6xl lg:text-[4.6rem];
+  @apply font-serif text-[clamp(2.15rem,10.5vw,2.6rem)] leading-[1.05] font-bold tracking-tight sm:text-6xl lg:text-[4.6rem] short:text-5xl;
 }
 
 @utility heading-lg {
@@ -169,7 +185,7 @@
 }
 
 @utility field {
-  @apply w-full rounded-2xl border border-navy/12 bg-white px-4 py-3 text-[15px] text-navy placeholder:text-body/60 transition outline-none focus:border-cobalt focus:ring-4 focus:ring-cobalt/15;
+  @apply w-full rounded-2xl border border-navy/12 bg-white px-4 py-3 text-base text-navy placeholder:text-body/60 transition outline-none focus:border-cobalt focus:ring-4 focus:ring-cobalt/15;
 }
 
 /* ------------------------------------------------------------------ */

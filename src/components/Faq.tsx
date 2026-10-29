@@ -59,7 +59,7 @@ export default function Faq() {
             A few things clients often ask before getting in touch. For anything else, send a short note through the
             contact form.
           </p>
-          <a href="#contact" className="mt-7 inline-flex items-center gap-2 font-semibold text-cobalt underline-offset-4 hover:underline">
+          <a href="#contact" className="mt-5 inline-flex min-h-11 items-center gap-2 font-semibold text-cobalt underline-offset-4 hover:underline">
             Ask a question
             <span aria-hidden>→</span>
           </a>

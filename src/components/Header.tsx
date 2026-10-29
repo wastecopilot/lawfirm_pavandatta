@@ -66,14 +66,14 @@ export default function Header() {
       >
         <a
           href="#main"
-          className="sr-only rounded-full bg-cobalt px-4 py-2 text-sm font-semibold text-white focus:not-sr-only focus:absolute focus:top-3 focus:left-3"
+          className="sr-only rounded-full bg-cobalt text-sm font-semibold text-white focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:px-4 focus:py-2"
         >
           Skip to content
         </a>
 
         <div className="container-site flex h-[var(--header-h)] items-center justify-between gap-4">
           <a href="#home" aria-label="Pavan Datta P, back to top" className="rounded-xl">
-            <Logo id="header-logo" />
+            <Logo id="header-logo" compact />
           </a>
 
           <nav aria-label="Primary" className="hidden min-[84rem]:block">
@@ -142,7 +142,7 @@ export default function Header() {
               role="dialog"
               aria-modal="true"
               aria-label="Site menu"
-              className="fixed inset-y-0 right-0 z-50 flex w-[min(88vw,380px)] flex-col overflow-y-auto bg-white px-6 pt-5 pb-8 shadow-2xl min-[84rem]:hidden"
+              className="fixed inset-y-0 right-0 z-50 flex w-[min(88vw,380px)] flex-col overflow-y-auto overscroll-contain bg-white px-6 pt-5 pb-8 shadow-2xl min-[84rem]:hidden short:pt-3 short:pb-4"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -164,7 +164,7 @@ export default function Header() {
                 </button>
               </div>
 
-              <nav aria-label="Mobile" className="relative mt-8">
+              <nav aria-label="Mobile" className="relative mt-8 short:mt-2">
                 <ul className="space-y-1">
                   {navLinks.map((link, index) => (
                     <motion.li
@@ -176,7 +176,7 @@ export default function Header() {
                       <a
                         href={link.href}
                         onClick={() => setOpen(false)}
-                        className={`flex items-center justify-between rounded-2xl px-4 py-3.5 font-serif text-xl font-semibold transition ${
+                        className={`flex items-center justify-between rounded-2xl px-4 py-3.5 font-serif text-xl font-semibold transition short:py-2 short:text-lg ${
                           active === link.href ? "bg-tint-blue text-cobalt" : "text-navy hover:bg-tint-blue/70"
                         }`}
                       >
@@ -190,7 +190,7 @@ export default function Header() {
                 </ul>
               </nav>
 
-              <a href="#contact" onClick={() => setOpen(false)} className="btn-primary group relative mt-auto w-full">
+              <a href="#contact" onClick={() => setOpen(false)} className="btn-primary group relative mt-auto w-full short:mt-4">
                 Schedule a Consultation
                 <ArrowPill />
               </a>

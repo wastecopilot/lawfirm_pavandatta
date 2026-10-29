@@ -15,7 +15,7 @@ export default function Hero() {
     <section
       id="home"
       aria-labelledby="hero-title"
-      className="relative isolate overflow-hidden bg-linear-to-b from-tint-blue via-white to-white pt-[calc(var(--header-h)+3rem)] pb-24 lg:pt-[calc(var(--header-h)+4.5rem)] lg:pb-32"
+      className="relative isolate overflow-hidden bg-linear-to-b from-tint-blue via-white to-white pt-[calc(var(--header-h)+2.5rem)] pb-20 sm:pt-[calc(var(--header-h)+3rem)] sm:pb-24 lg:pt-[calc(var(--header-h)+4.5rem)] lg:pb-32 short:pt-[calc(var(--header-h)+1.5rem)] short:pb-16"
     >
       {/* Decorative background */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
@@ -54,7 +54,7 @@ export default function Hero() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.24} className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <Reveal delay={0.24} className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center short:mt-7">
             <a href="#contact" className="btn-primary group pr-3!">
               Schedule a Consultation
               <ArrowPill />
@@ -103,24 +103,24 @@ export default function Hero() {
             imageClassName="object-[50%_20%]"
           />
 
-          <div className="absolute top-14 -left-4 animate-float sm:-left-12">
-            <div className="flex items-center gap-3 rounded-2xl bg-white/95 px-4 py-3 shadow-[0_20px_40px_-18px_rgba(15,27,77,0.4)] ring-1 ring-navy/5 backdrop-blur">
-              <span className="grid size-10 place-items-center rounded-xl bg-tint-warm text-gold-deep">
-                <GraduationCap className="size-5" aria-hidden />
+          <div className="absolute top-6 -left-2 animate-float sm:top-14 sm:-left-12">
+            <div className="flex items-center gap-2.5 rounded-2xl bg-white/95 px-3 py-2 shadow-[0_20px_40px_-18px_rgba(15,27,77,0.4)] ring-1 ring-navy/5 backdrop-blur sm:gap-3 sm:px-4 sm:py-3">
+              <span className="grid size-8 place-items-center rounded-xl bg-tint-warm text-gold-deep sm:size-10">
+                <GraduationCap className="size-4 sm:size-5" aria-hidden />
               </span>
               <span className="leading-tight">
-                <span className="block text-[11px] font-semibold tracking-[0.14em] text-body uppercase">Qualified</span>
-                <span className="block font-serif text-base font-bold text-navy">{siteConfig.qualifications}</span>
+                <span className="block text-xs font-semibold tracking-[0.14em] text-body uppercase">Qualified</span>
+                <span className="block font-serif text-sm font-bold text-navy sm:text-base">{siteConfig.qualifications}</span>
               </span>
             </div>
           </div>
 
-          <div className="absolute -right-3 bottom-24 animate-float-delayed sm:-right-8">
-            <div className="flex max-w-[15rem] items-center gap-3 rounded-2xl bg-white/95 px-4 py-3 shadow-[0_20px_40px_-18px_rgba(15,27,77,0.4)] ring-1 ring-navy/5 backdrop-blur">
-              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-linear-to-br from-cobalt to-indigo text-white">
-                <Briefcase className="size-5" aria-hidden />
+          <div className="absolute -right-2 bottom-6 animate-float-delayed sm:-right-8 sm:bottom-24">
+            <div className="flex max-w-[12.5rem] items-center gap-2.5 rounded-2xl bg-white/95 px-3 py-2 shadow-[0_20px_40px_-18px_rgba(15,27,77,0.4)] ring-1 ring-navy/5 backdrop-blur sm:max-w-[15rem] sm:gap-3 sm:px-4 sm:py-3">
+              <span className="grid size-8 shrink-0 place-items-center rounded-xl bg-linear-to-br from-cobalt to-indigo text-white sm:size-10">
+                <Briefcase className="size-4 sm:size-5" aria-hidden />
               </span>
-              <span className="text-sm leading-snug font-semibold text-navy">Corporate &amp; Commercial Advisory</span>
+              <span className="text-[13px] leading-snug font-semibold text-navy sm:text-sm">Corporate &amp; Commercial Advisory</span>
             </div>
           </div>
         </Reveal>

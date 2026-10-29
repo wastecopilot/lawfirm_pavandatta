@@ -86,10 +86,12 @@ type LogoProps = {
   inverted?: boolean;
   id?: string;
   className?: string;
+  /** Hide the tagline below the md breakpoint (the header, where space is tight). */
+  compact?: boolean;
 };
 
 /** Logomark paired with the wordmark and tagline from site config. */
-export default function Logo({ inverted = false, id = "logo", className = "" }: LogoProps) {
+export default function Logo({ inverted = false, id = "logo", className = "", compact = false }: LogoProps) {
   return (
     <span className={`inline-flex items-center gap-2.5 min-[400px]:gap-3 ${className}`}>
       <LogoMark id={id} inverted={inverted} className="size-10 shrink-0 min-[400px]:size-11 sm:size-12" />
@@ -98,7 +100,7 @@ export default function Logo({ inverted = false, id = "logo", className = "" }: 
           {siteConfig.name}
         </span>
         <span
-          className={`mt-1 max-w-[10.5rem] text-[9.5px] leading-snug font-semibold tracking-[0.12em] uppercase min-[400px]:max-w-none min-[400px]:text-[10px] min-[400px]:leading-none min-[400px]:whitespace-nowrap sm:text-[10.5px] ${inverted ? "text-white/80" : "text-body"}`}
+          className={`mt-1 text-[11px] leading-snug font-semibold tracking-[0.12em] uppercase min-[400px]:leading-none min-[400px]:whitespace-nowrap ${compact ? "max-md:hidden" : ""} ${inverted ? "text-white/80" : "text-body"}`}
         >
           {siteConfig.tagline}
         </span>
