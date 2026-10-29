@@ -1,26 +1,186 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ */
+/* Brand tokens                                                        */
+/* ------------------------------------------------------------------ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #ffffff;
+  --tint-blue: #f3f7ff;
+  --tint-warm: #fff7e6;
+  --tint-mint: #e8faf6;
+
+  --cobalt: #2347f5;
+  --cobalt-hover: #1a37c9;
+  --indigo: #4f46e5;
+  --teal: #0fb5a6;
+  --gold: #ffb41f;
+  --gold-deep: #ff9f1c;
+  --coral: #ff6b57;
+
+  --navy: #0f1b4d;
+  --body: #46506e;
+
+  --header-h: 84px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-tint-blue: var(--tint-blue);
+  --color-tint-warm: var(--tint-warm);
+  --color-tint-mint: var(--tint-mint);
+
+  --color-cobalt: var(--cobalt);
+  --color-cobalt-hover: var(--cobalt-hover);
+  --color-indigo: var(--indigo);
+  --color-teal: var(--teal);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-coral: var(--coral);
+  --color-navy: var(--navy);
+  --color-body: var(--body);
+
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-delayed: float 6s ease-in-out 3s infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-padding-top: calc(var(--header-h) + 12px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--body);
+    font-family: var(--font-sans);
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--navy);
+    font-family: var(--font-serif);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--gold) 45%, transparent);
+    color: var(--navy);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--cobalt);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Reusable components                                                 */
+/* ------------------------------------------------------------------ */
+@utility container-site {
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
+}
+
+@utility section {
+  @apply py-20 sm:py-24 lg:py-28;
+}
+
+@utility eyebrow {
+  @apply inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-1.5 text-xs font-semibold tracking-[0.18em] text-cobalt uppercase ring-1 ring-cobalt/15 backdrop-blur;
+}
+
+@utility heading-xl {
+  @apply font-serif text-[2.6rem] leading-[1.05] font-bold tracking-tight sm:text-6xl lg:text-[4.6rem];
+}
+
+@utility heading-lg {
+  @apply font-serif text-3xl leading-tight font-bold tracking-tight sm:text-4xl lg:text-5xl;
+}
+
+@utility text-gradient {
+  @apply bg-linear-to-r from-cobalt to-indigo bg-clip-text text-transparent;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition duration-300 ease-out will-change-transform focus-visible:outline-offset-4;
+}
+
+@utility btn-primary {
+  @apply btn bg-linear-to-r from-cobalt to-indigo text-white shadow-[0_12px_30px_-10px_rgba(35,71,245,0.6)] hover:-translate-y-0.5 hover:from-cobalt-hover hover:to-indigo hover:shadow-[0_18px_40px_-12px_rgba(35,71,245,0.7)];
+}
+
+@utility btn-gold {
+  @apply btn bg-linear-to-r from-gold to-gold-deep text-navy shadow-[0_12px_30px_-10px_rgba(255,159,28,0.65)] hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-12px_rgba(255,159,28,0.75)];
+}
+
+@utility btn-outline {
+  @apply btn bg-white text-navy ring-1 ring-navy/15 hover:-translate-y-0.5 hover:text-cobalt hover:ring-cobalt/40;
+}
+
+@utility card-lift {
+  @apply transition duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_24px_50px_-24px_rgba(15,27,77,0.35)];
+}
+
+@utility arch {
+  border-radius: 999px 999px 28px 28px;
+}
+
+@utility blob {
+  @apply pointer-events-none absolute rounded-full blur-3xl;
+}
+
+@utility field {
+  @apply w-full rounded-2xl border border-navy/12 bg-white px-4 py-3 text-[15px] text-navy placeholder:text-body/60 transition outline-none focus:border-cobalt focus:ring-4 focus:ring-cobalt/15;
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion preferences                                                  */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
