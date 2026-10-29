@@ -11,8 +11,16 @@ export const siteConfig = {
   title: "Advocate & Attorney at Law",
   qualifications: "B.Sc., LL.B.",
 
-  /** Public URL of the website, used for SEO (canonical URL, sitemap, Open Graph). */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  /**
+   * Public URL of the website, used for SEO (canonical URL, sitemap, Open Graph).
+   * Set NEXT_PUBLIC_SITE_URL once a custom domain is live; on Vercel it otherwise
+   * falls back to the project's production domain.
+   */
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
+      : "http://localhost:3000"),
 
   contact: {
     /** e.g. "+91 98xxxxxxxx". Leave empty to hide the call button and phone line. */

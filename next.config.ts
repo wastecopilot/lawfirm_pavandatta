@@ -17,6 +17,11 @@ const nextConfig: NextConfig = {
     // SiteImage appends ?v=<file mtime> so a swapped photo is re-optimised.
     localPatterns: [{ pathname: "/images/**" }],
   },
+  // SiteImage checks public/images on disk at request time. On serverless hosts
+  // such as Vercel, public/ is not bundled with the function unless listed here.
+  outputFileTracingIncludes: {
+    "/": ["./public/images/**/*"],
+  },
 };
 
 export default nextConfig;
