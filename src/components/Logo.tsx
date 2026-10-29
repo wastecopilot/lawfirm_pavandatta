@@ -86,7 +86,7 @@ type LogoProps = {
   inverted?: boolean;
   id?: string;
   className?: string;
-  /** Hide the tagline below the md breakpoint (the header, where space is tight). */
+  /** Hide the tagline where the header is tight: phones, and small laptops beside the inline nav. */
   compact?: boolean;
 };
 
@@ -100,7 +100,7 @@ export default function Logo({ inverted = false, id = "logo", className = "", co
           {siteConfig.name}
         </span>
         <span
-          className={`mt-1 text-[11px] leading-snug font-semibold tracking-[0.12em] uppercase min-[400px]:leading-none min-[400px]:whitespace-nowrap ${compact ? "max-md:hidden" : ""} ${inverted ? "text-white/80" : "text-body"}`}
+          className={`mt-1 text-[11px] leading-snug font-semibold tracking-[0.12em] uppercase min-[400px]:leading-none min-[400px]:whitespace-nowrap ${compact ? "max-md:hidden lg:max-xl:hidden" : ""} ${inverted ? "text-white/80" : "text-body"}`}
         >
           {siteConfig.tagline}
         </span>

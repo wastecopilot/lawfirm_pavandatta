@@ -47,10 +47,17 @@ export default function Header() {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     };
+    // The drawer is hidden from lg up, so close it (and release the scroll lock) on resize/rotation.
+    const desktop = window.matchMedia("(min-width: 64rem)");
+    const onDesktop = () => {
+      if (desktop.matches) setOpen(false);
+    };
     window.addEventListener("keydown", onKey);
+    desktop.addEventListener("change", onDesktop);
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKey);
+      desktop.removeEventListener("change", onDesktop);
       toggle?.focus();
     };
   }, [open]);
@@ -76,7 +83,7 @@ export default function Header() {
             <Logo id="header-logo" compact />
           </a>
 
-          <nav aria-label="Primary" className="hidden min-[84rem]:block">
+          <nav aria-label="Primary" className="hidden lg:block">
             <ul className="flex items-center">
               {navLinks.map((link) => {
                 const isActive = active === link.href;
@@ -85,7 +92,7 @@ export default function Header() {
                     <a
                       href={link.href}
                       aria-current={isActive ? "location" : undefined}
-                      className={`relative rounded-full px-3 py-2 text-sm font-medium transition-colors ${
+                      className={`relative rounded-full px-3 py-2 text-sm font-medium whitespace-nowrap transition-colors ${
                         isActive ? "text-cobalt" : "text-navy/75 hover:text-cobalt"
                       }`}
                     >
@@ -105,7 +112,11 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href="#contact" className="btn-primary group py-3! pr-3! whitespace-nowrap max-sm:hidden">
+            {/* Hidden on phones, and on small laptops where the inline nav needs the room. */}
+            <a
+              href="#contact"
+              className="btn-primary group py-3! pr-3! whitespace-nowrap max-sm:hidden lg:max-[72rem]:hidden"
+            >
               Schedule a Consultation
               <ArrowPill />
             </a>
@@ -116,7 +127,7 @@ export default function Header() {
               aria-label="Open menu"
               aria-expanded={open}
               aria-controls="mobile-menu"
-              className="grid size-11 place-items-center rounded-full bg-white text-navy shadow-sm ring-1 ring-navy/10 transition hover:text-cobalt min-[84rem]:hidden"
+              className="grid size-11 place-items-center rounded-full bg-white text-navy shadow-sm ring-1 ring-navy/10 transition hover:text-cobalt lg:hidden"
             >
               <Menu className="size-5" />
             </button>
@@ -130,7 +141,7 @@ export default function Header() {
           <>
             <motion.div
               key="overlay"
-              className="fixed inset-0 z-50 bg-navy/25 backdrop-blur-sm min-[84rem]:hidden"
+              className="fixed inset-0 z-50 bg-navy/25 backdrop-blur-sm lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -142,7 +153,7 @@ export default function Header() {
               role="dialog"
               aria-modal="true"
               aria-label="Site menu"
-              className="fixed inset-y-0 right-0 z-50 flex w-[min(88vw,380px)] flex-col overflow-y-auto overscroll-contain bg-white px-6 pt-5 pb-8 shadow-2xl min-[84rem]:hidden short:pt-3 short:pb-4"
+              className="fixed inset-y-0 right-0 z-50 flex w-[min(88vw,380px)] flex-col overflow-y-auto overscroll-contain bg-white px-6 pt-5 pb-8 shadow-2xl lg:hidden short:pt-3 short:pb-4"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
